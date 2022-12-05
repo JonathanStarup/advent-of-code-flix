@@ -1,11 +1,11 @@
-namespace One {
+namespace Day01/Solution {
 use Result.flatMap
 use Foldable.foldLeft
 use Functor.map
 use Util.solveFile
 
 pub def main(): Result[Unit, String] \ IO = {
-    let cwd = "src" / "2022" / "1";
+    let cwd = "src" / "2022" / "Day01";
     let* _ = solveFile(cwd / "input.txt", cwd / "output1.txt", solve1);
     solveFile(cwd / "input.txt", cwd / "output2.txt", solve2)
 }

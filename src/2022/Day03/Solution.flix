@@ -1,4 +1,4 @@
-namespace Three {
+namespace Day03/Solution {
 use Functor.map
 use Util.solveFile
 use Result.flatMap
@@ -6,7 +6,7 @@ use Set.intersection
 use Set.minimum
 
 pub def main(): Result[Unit, String] \ IO = {
-    let cwd = "src" / "2022" / "3";
+    let cwd = "src" / "2022" / "Day03";
     let* _ = solveFile(cwd / "input.txt", cwd / "output1.txt", solve1);
     solveFile(cwd / "input.txt", cwd / "output2.txt", solve2)
 }

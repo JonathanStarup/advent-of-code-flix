@@ -1,14 +1,10 @@
-mod Day07.Solution {
+mod Y2022.Day07.Solution {
 use Functor.map
-use Util.solveFile
+use Util.solveDay
 
-pub def main(): Result[IOError, Unit] \ IO = {
-    use Result.flatMap;
-    let cwd = "src" / "2022" / "Day07";
-    for (
-        _ <- solveFile(cwd / "input.txt", cwd / "output1.txt", solve1);
-        res <- solveFile(cwd / "input.txt", cwd / "output2.txt", solve2)
-    ) yield res
+pub def main(): Unit \ IO = {
+    solveDay(2022, 7, solve1);
+    solveDay(2022, 7, solve2)
 }
 
 pub enum Item[r: Region] {

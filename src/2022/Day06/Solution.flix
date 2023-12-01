@@ -1,13 +1,11 @@
-mod Day06.Solution {
+mod Y2022.Day06.Solution {
 use Functor.map
-use Util.solveFile
+use Util.solveDay
 
-pub def main(): Result[IOError, Unit] \ IO = {
-    let cwd = "src" / "2022" / "Day06";
-    for (
-        _ <- solveFile(cwd / "input.txt", cwd / "output1.txt", solveWithCount(4));
-        res <- solveFile(cwd / "input.txt", cwd / "output2.txt", solveWithCount(14))
-    ) yield res
+
+pub def main(): Unit \ IO = {
+    solveDay(2022, 6, solveWithCount(4));
+    solveDay(2022, 6, solveWithCount(14))
 }
 
 def findMatch(size: Int32, f: Chain[a] -> Bool, l: List[a]): Int32 = region r {

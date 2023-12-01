@@ -1,15 +1,11 @@
-mod Day04.Solution {
+mod Y2022.Day04.Solution {
 use Functor.map
-use Util.solveFile
+use Util.solveDay
 use Result.flatMap
 
-pub def main(): Result[IOError, Unit] \ IO = {
-    let cwd = "src" / "2022" / "Day04";
-    for (
-        _ <- solveFile(cwd / "input.txt", cwd / "output1.txt", solve1);
-        res <- solveFile(cwd / "input.txt", cwd / "output2.txt", solve2)
-    ) yield res
-
+pub def main(): Unit \ IO = {
+    solveDay(2022, 4, solve1);
+    solveDay(2022, 4, solve2)
 }
 
 def forceIntoTuple(l: List[a]): (a, a) = match l {

@@ -1,14 +1,10 @@
-mod Day05.Solution {
+mod Y2022.Day05.Solution {
 use Functor.map
-use Util.solveFile
+use Util.solveDay
 
-pub def main(): Result[IOError, Unit] \ IO = region r {
-    use Result.flatMap;
-    let cwd = "src" / "2022" / "Day05";
-    for (
-        _ <- solveFile(cwd / "input.txt", cwd / "output1.txt", solveWithMove(r, move9000));
-        res <- solveFile(cwd / "input.txt", cwd / "output2.txt", solveWithMove(r, move9001))
-    ) yield res
+pub def main(): Unit \ IO = region rc {
+    solveDay(2022, 5, solveWithMove(rc, move9000));
+    solveDay(2022, 5, solveWithMove(rc, move9001))
 }
 
 type alias Move = {

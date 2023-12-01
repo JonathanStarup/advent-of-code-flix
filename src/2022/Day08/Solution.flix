@@ -1,16 +1,12 @@
 mod Day08.Solution {
 use Functor.map
-use Util.solveFile
+use Util.solveDay
 use ToString.toString
 use FromString.fromString
 
-pub def main(): Result[IOError, Unit] \ IO = {
-    use Result.flatMap;
-    let cwd = "src" / "2022" / "Day08";
-    for (
-        _ <- solveFile(cwd / "input.txt", cwd / "output1.txt", solve1 >> resPanic);
-        res <- solveFile(cwd / "input.txt", cwd / "output2.txt", solve2)
-    ) yield res
+pub def main(): Unit \ IO = {
+    solveDay(2022, 8, solve1 >> resPanic);
+    solveDay(2022, 8, solve2)
 }
 
 def resPanic(r: Result[String, t]): t = match r {

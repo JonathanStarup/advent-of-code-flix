@@ -1,15 +1,12 @@
-mod Day01.Solution {
+mod Y2022.Day01.Solution {
 use Result.flatMap
 use Foldable.foldLeft
 use Functor.map
-use Util.solveFile
+use Util.solveDay
 
-pub def main(): Result[IOError, Unit] \ IO = {
-    let cwd = "src" / "2022" / "Day01";
-    for (
-        _ <- solveFile(cwd / "input.txt", cwd / "output1.txt", solve1);
-        res <- solveFile(cwd / "input.txt", cwd / "output2.txt", solve2)
-    ) yield res
+pub def main(): Unit \ IO = {
+    solveDay(2022, 1, solve1);
+    solveDay(2022, 1, solve2)
 }
 
 def solve1(lines: List[String]): Int32 = region r {

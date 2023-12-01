@@ -1,17 +1,14 @@
-mod Day02.Solution {
+mod Y2022.Day02.Solution {
 use Functor.map
-use Util.solveFile
+use Util.solveDay
 use Result.flatMap
 
 use Rps.{Rock, Paper, Scissor}
 use Outcome.{Win, Tie, Loss}
 
-pub def main(): Result[IOError, Unit] \ IO = {
-    let cwd = "src" / "2022" / "Day02";
-    for (
-        _ <- solveFile(cwd / "input.txt", cwd / "output1.txt", solve1);
-        res <- solveFile(cwd / "input.txt", cwd / "output2.txt", solve2)
-    ) yield res
+pub def main(): Unit \ IO = {
+    solveDay(2022, 2, solve1);
+    solveDay(2022, 2, solve2)
 }
 
 enum Rps with Eq, ToString{

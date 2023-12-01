@@ -1,22 +1,23 @@
-namespace Util {
+mod Util {
 use Result.flatMap
 
 pub def solveFile(
     input: String, output: String, f: List[String] -> t \ ef
-): Result[Unit, String] \ {IO, ef} with ToString[t] = {
-    let* lines = File.readLines(input);
+): Result[IOError, Unit] \ {IO, ef} with ToString[t] = {
+    (Files.readLines(input)) |> Result.flatMap( lines -> {
+        println("Solving file ${input}:");
 
-    println("Solving file ${input}:");
+        let solution = f(lines);
 
-    let solution = f(lines);
-
-    println("${solution}\n");
-    let* _ = File.deleteIfExists(output);
-    writeWithUnit(output, solution)
+        println("${solution}\n");
+        for (
+            _ <- Files.deleteIfExists(output);
+            res <- writeWithUnit(output, solution)
+        ) yield res
+    })
 }
 
-def writeWithUnit(file: String, content: t): Result[Unit, String] \ IO with ToString[t] = {
-    let* written = File.write(file, content);
-    if (written) Ok() else Err("Could not write file.")
+def writeWithUnit(file: String, content: t): Result[IOError, Unit] \ IO with ToString[t] = {
+    Files.write(file, content) |> Result.map(_ -> ())
 }
 }

@@ -1,12 +1,13 @@
-namespace Day06/Solution {
+mod Day06.Solution {
 use Functor.map
 use Util.solveFile
 
-pub def main(): Result[Unit, String] \ IO = {
-    use Result.flatMap;
+pub def main(): Result[IOError, Unit] \ IO = {
     let cwd = "src" / "2022" / "Day06";
-    let* _ = solveFile(cwd / "input.txt", cwd / "output1.txt", solveWithCount(4));
-    solveFile(cwd / "input.txt", cwd / "output2.txt", solveWithCount(14))
+    for (
+        _ <- solveFile(cwd / "input.txt", cwd / "output1.txt", solveWithCount(4));
+        res <- solveFile(cwd / "input.txt", cwd / "output2.txt", solveWithCount(14))
+    ) yield res
 }
 
 def findMatch(size: Int32, f: Chain[a] -> Bool, l: List[a]): Int32 = region r {

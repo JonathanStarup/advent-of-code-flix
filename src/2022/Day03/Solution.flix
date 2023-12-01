@@ -1,21 +1,23 @@
-namespace Day03/Solution {
+mod Day03.Solution {
 use Functor.map
 use Util.solveFile
 use Result.flatMap
 use Set.intersection
 use Set.minimum
 
-pub def main(): Result[Unit, String] \ IO = {
+pub def main(): Result[IOError, Unit] \ IO = {
     let cwd = "src" / "2022" / "Day03";
-    let* _ = solveFile(cwd / "input.txt", cwd / "output1.txt", solve1);
-    solveFile(cwd / "input.txt", cwd / "output2.txt", solve2)
+    for (
+        _ <- solveFile(cwd / "input.txt", cwd / "output1.txt", solve1);
+        res <- solveFile(cwd / "input.txt", cwd / "output2.txt", solve2)
+    ) yield res
 }
 
 def letterPoints(c: Char): Int32 = {
     if (Char.isLowerCase(c)) {
-        Char.toInt32(c) + 1 - Char.toInt32('a')
+        ?charToInt32(c) + 1 - ?charToInt32('a')
     } else {
-        Char.toInt32(c) + 27 - Char.toInt32('A')
+        ?charToInt32(c) + 27 - ?charToInt32('A')
     }
 }
 
